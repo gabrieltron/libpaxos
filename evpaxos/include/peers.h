@@ -38,12 +38,20 @@ extern "C" {
 #include "paxos_types.h"
 #include <event2/bufferevent.h>
 
-struct peer;
+struct peer
+{
+	int id;
+	int status;
+	struct bufferevent* bev;
+	struct event* reconnect_ev;
+	struct sockaddr_in addr;
+	struct peers* peers;
+};
 struct peers;
 
 typedef void (*peer_cb)(struct peer* p, paxos_message* m, void* arg);
 typedef void (*peer_iter_cb)(struct peer* p, void* arg);
-	
+
 struct peers* peers_new(struct event_base* base, struct evpaxos_config* config);
 void peers_free(struct peers* p);
 int peers_count(struct peers* p);

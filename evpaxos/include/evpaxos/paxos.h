@@ -37,6 +37,17 @@
 extern "C" {
 #endif
 
+struct client_message {
+	int id;
+	unsigned long s_addr;
+	unsigned short sin_port;
+	int key;
+	int type;
+	char args[0];
+	size_t size;
+};
+typedef struct client_message client_message;
+
 struct evlearner;
 struct evproposer;
 struct evacceptor;
