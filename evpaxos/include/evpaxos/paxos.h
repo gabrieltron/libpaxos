@@ -43,7 +43,7 @@ struct client_message {
 	unsigned short sin_port;
 	int key;
 	int type;
-	char args[0];
+	char args[128];
 	size_t size;
 };
 typedef struct client_message client_message;
